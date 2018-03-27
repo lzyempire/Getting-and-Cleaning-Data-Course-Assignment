@@ -14,16 +14,7 @@ x: merge from x_test and x_train.
 y: merge from y_test and y_train.  
 seq_meanstd: The sequence of features with the mean and standard deviation variables  
 x_meanstd: The set with the mean and standard deviation variables  
-y_label <- cbind(y, activity_labels[y[, 1], 2]) #Extract the value of activity names
-x_meanstd <- cbind(y_label[, 2], x_meanstd) #Add a column to the data sets
-
-#Label the data set with descriptive variable names
-name_meanstd <- gsub("\\(\\)", "", features[seq_meanstd, 2]) 
-name_meanstd <- gsub("-", "_", name_meanstd) #Eliminate "()" and substitute "-" to "_"
-names(x_meanstd) <- c("Activity", name_meanstd) #Give names to all the columns
-
-#Creates a second, independent tidy data set with the average of each variable for each activity and each subject
-x_subject <- cbind(subject, x_meanstd) #Add subject column to the data sets
-x_average <- aggregate(x_subject[, 3:66], by = list(x_subject[, 1], x_subject[, 2]), FUN = "mean") #Group and take mean function
-colnames(x_average)[1:2] <- c("Subject", "Activity") #Label the grouped column names
-write.table(x_average, file = "x_average.txt", row.names = FALSE)
+y_label: Extracted the value of activity names  
+name_meanstd: Give names to all the columns  
+x_subject: Added subject column to the data sets  
+x_average: Grouped and take mean function  
