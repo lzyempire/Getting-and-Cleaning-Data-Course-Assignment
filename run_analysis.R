@@ -33,4 +33,4 @@ names(x_meanstd) <- c("Activity", name_meanstd) #Give names to all the columns
 x_subject <- cbind(subject, x_meanstd) #Add subject column to the data sets
 x_average <- aggregate(x_subject[, 3:66], by = list(x_subject[, 1], x_subject[, 2]), FUN = "mean") #Group and take mean function
 colnames(x_average)[1:2] <- c("Subject", "Activity") #Label the grouped column names
-x_average
+write.table(x_average, file = "x_average.txt", row.names = FALSE)
